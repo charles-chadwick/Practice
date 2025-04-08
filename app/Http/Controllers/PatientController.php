@@ -13,4 +13,11 @@ class PatientController extends Controller
             "patients" => Patient::all()
         ]);
     }
+
+    public function profile(Patient $patient)
+    {
+        return view("patients.profile", [
+            "patient" => $patient
+        ]);
+    }
 }

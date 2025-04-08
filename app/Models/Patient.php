@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,9 +11,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Str;
 
-class Patient extends Authenticatable implements HasMedia
-{
+class Patient extends Authenticatable implements HasMedia {
     use Notifiable, SoftDeletes, InteractsWithMedia, HasFactory;
 
     /**
@@ -45,11 +46,28 @@ class Patient extends Authenticatable implements HasMedia
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
+    protected function casts() : array {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
+            'created_at'        => 'datetime',
         ];
+    }
+
+    public function getFullNameAttribute() : string {
+        return preg_replace("/\s{2,}/", " ", "{$this->first} {$this->middle} {$this->last}");
+    }
+
+    public function getAgeAttribute() : string {
+        return Carbon::parse($this->dob)->diff(Carbon::now())->format('%y years %m months');
+    }
+
+    public function getAvatarAttribute() : array|string {
+
+        $avatar = $this->getFirstMediaUrl('avatars');
+        if ( env('APP_ENV') === 'local' ) {
+            $avatar = str_replace('localhost', $_SERVER[ 'HTTP_HOST' ], $avatar);
+        }
+        return $avatar;
     }
 }

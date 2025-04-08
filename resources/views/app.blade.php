@@ -46,8 +46,8 @@
                             <!-- Current: "bg-lime-700 text-white", Default: "text-white hover:bg-lime-500/75" -->
                             <a
                                 href="#"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-white bg-lime-700 "
-                                aria-current="page"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-white bg-lime-700/75"
+
                             >Dashboard</a>
                             <a
                                 href="#"
@@ -113,11 +113,11 @@
                 <!-- Current: "bg-lime-700 text-white", Default: "text-white hover:bg-lime-500/75" -->
                 <a
                     href="#"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-white"
+                    class="block rounded-md px-3 py-2 text-sm font-medium text-white"
                 >Dashboard</a>
                 <a
                     href="#"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-lime-500/75"
+                    class="block rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-lime-500/75"
                 >Patients</a>
             </div>
         </div>
