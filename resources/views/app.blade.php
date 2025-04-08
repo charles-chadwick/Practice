@@ -1,110 +1,139 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
+<html
+    lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+    class="h-full bg-zinc-200"
+>
 <head>
-	<meta charset="utf-8">
-	<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1">
-	
-	<title>Laravel</title>
-	
-	<!-- Fonts -->
-	<link
-			rel="preconnect"
-			href="https://fonts.bunny.net">
-	<link
-			href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"
-			rel="stylesheet" />
-	
-	<!-- Styles / Scripts -->
-	@vite(['resources/css/app.css', 'resources/js/app.js'])
-	@fluxAppearance
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>@yield("title")</title>
+
+    <!-- Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.bunny.net"
+    >
+    <link
+        href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"
+        rel="stylesheet"
+    />
+
+    <!-- Styles / Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @fluxAppearance
 </head>
 
-<body class="min-h-screen bg-white dark:bg-zinc-800">
-<flux:header container class="bg-lime-600 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">
-	<flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
-	
-	<flux:brand href="#" name="Practice" class="max-lg:hidden dark:hidden" />
-	<flux:brand href="#" name="Practice" class="max-lg:hidden! hidden dark:flex" />
-	
-	<flux:navbar class="-mb-px max-lg:hidden">
-		<flux:navbar.item href="#" >Home</flux:navbar.item>
-		<flux:navbar.item badge="12" href="#">Inbox</flux:navbar.item>
-		<flux:navbar.item href="#">Documents</flux:navbar.item>
-		<flux:navbar.item href="#">Calendar</flux:navbar.item>
-		
-		<flux:separator vertical variant="subtle" class="my-2"/>
-		
-		<flux:dropdown class="max-lg:hidden">
-			<flux:navbar.item icon:trailing="chevron-down">Favorites</flux:navbar.item>
-			
-			<flux:navmenu>
-				<flux:navmenu.item href="#">Marketing site</flux:navmenu.item>
-				<flux:navmenu.item href="#">Android app</flux:navmenu.item>
-				<flux:navmenu.item href="#">Brand guidelines</flux:navmenu.item>
-			</flux:navmenu>
-		</flux:dropdown>
-	</flux:navbar>
-	
-	<flux:spacer />
-	
-	<flux:navbar class="me-4">
-		<flux:navbar.item icon="magnifying-glass" href="#" label="Search" />
-		<flux:navbar.item class="max-lg:hidden" icon="cog-6-tooth" href="#" label="Settings" />
-		<flux:navbar.item class="max-lg:hidden" icon="information-circle" href="#" label="Help" />
-	</flux:navbar>
-	
-	<flux:dropdown position="top" align="start">
-		<flux:profile avatar="https://fluxui.dev/img/demo/user.png" />
-		
-		<flux:menu>
-			<flux:menu.radio.group>
-				<flux:menu.radio checked>Olivia Martin</flux:menu.radio>
-				<flux:menu.radio>Truly Delta</flux:menu.radio>
-			</flux:menu.radio.group>
-			
-			<flux:menu.separator />
-			
-			<flux:menu.item icon="arrow-right-start-on-rectangle">Logout</flux:menu.item>
-		</flux:menu>
-	</flux:dropdown>
-</flux:header>
+<body class="h-full ">
 
-<flux:sidebar stashable sticky class="lg:hidden bg-zinc-50 dark:bg-zinc-900 border rtl:border-r-0 rtl:border-l border-zinc-200 dark:border-zinc-700">
-	<flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
-	
-	<flux:brand href="#" logo="https://fluxui.dev/img/demo/logo.png" name="Acme Inc." class="px-2 dark:hidden" />
-	<flux:brand href="#" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Acme Inc." class="px-2 hidden dark:flex" />
-	
-	<flux:navlist variant="outline">
-		<flux:navlist.item icon="home" href="#" current>Home</flux:navlist.item>
-		<flux:navlist.item icon="inbox" badge="12" href="#">Inbox</flux:navlist.item>
-		<flux:navlist.item icon="document-text" href="#">Documents</flux:navlist.item>
-		<flux:navlist.item icon="calendar" href="#">Calendar</flux:navlist.item>
-		
-		<flux:navlist.group expandable heading="Favorites" class="max-lg:hidden">
-			<flux:navlist.item href="#">Marketing site</flux:navlist.item>
-			<flux:navlist.item href="#">Android app</flux:navlist.item>
-			<flux:navlist.item href="#">Brand guidelines</flux:navlist.item>
-		</flux:navlist.group>
-	</flux:navlist>
-	
-	<flux:spacer />
-	
-	<flux:navlist variant="outline">
-		<flux:navlist.item icon="cog-6-tooth" href="#">Settings</flux:navlist.item>
-		<flux:navlist.item icon="information-circle" href="#">Help</flux:navlist.item>
-	</flux:navlist>
-</flux:sidebar>
+<div class="min-h-full">
+    <nav class="bg-lime-600">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center">
+                    <div class="shrink-0">
+                        <img
+                            class="size-8"
+                            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=lime&shade=300"
+                            alt="Your Company"
+                        >
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <!-- Current: "bg-lime-700 text-white", Default: "text-white hover:bg-lime-500/75" -->
+                            <a
+                                href="#"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-white bg-lime-700 "
+                                aria-current="page"
+                            >Dashboard</a>
+                            <a
+                                href="#"
+                                class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-lime-500/75"
+                            >Patients</a>
+                        </div>
+                    </div>
+                </div>
 
-<flux:main container>
-	<flux:heading size="xl" level="1">Good afternoon, Olivia</flux:heading>
-	
-	<flux:text class="mt-2 mb-6 text-base">Here's what's new today</flux:text>
-	
-	<flux:separator variant="subtle" />
-</flux:main>
+                <div class="-mr-2 flex md:hidden">
+                    <!-- Mobile menu button -->
+                    <button
+                        type="button"
+                        class="relative inline-flex items-center justify-center rounded-md bg-lime-600 p-2 text-lime-200 hover:bg-lime-500/75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-lime-600"
+                        aria-controls="mobile-menu"
+                        aria-expanded="false"
+                    >
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Menu open: "hidden", Menu closed: "block" -->
+                        <svg
+                            class="block size-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                            data-slot="icon"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                            />
+                        </svg>
+                        <!-- Menu open: "block", Menu closed: "hidden" -->
+                        <svg
+                            class="hidden size-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                            data-slot="icon"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M6 18 18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div
+            class="md:hidden"
+            id="mobile-menu"
+        >
+            <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+                <!-- Current: "bg-lime-700 text-white", Default: "text-white hover:bg-lime-500/75" -->
+                <a
+                    href="#"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-white"
+                >Dashboard</a>
+                <a
+                    href="#"
+                    class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-lime-500/75"
+                >Patients</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white shadow-sm">
+        <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+            <h1 class="text-lg/6 font-semibold text-zinc-900">@yield("title")</h1>
+        </div>
+    </header>
+    <main>
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            @yield("content")
+        </div>
+    </main>
+</div>
 
 @fluxScripts
 </body>

@@ -21,9 +21,9 @@ class Patient extends Authenticatable implements HasMedia
      * @var list<string>
      */
     protected $fillable = [
-        'first_name',
-        'middle_name',
-        'last_name',
+        'first',
+        'middle',
+        'last',
         'dob',
         'gender',
         'email',
