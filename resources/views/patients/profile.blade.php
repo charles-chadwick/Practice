@@ -10,11 +10,15 @@
                     class="inline-block rounded-md mask-clip-border size-40 border-2 border-stone-200 shadow-xs"
                 >
             </div>
+            <div class="flex-none">
+                <h2 class="font-bold mb-2">{{ $patient->full_name }} (#{{ $patient->id }})</h2>
+                <p class=" text-sm">DOB: {{ $patient->dob }}</p>
+                <p class=" text-sm">Age: {{ $patient->age }}</p>
+                <p class=" text-sm">Email: {{ $patient->email }}</p>
+
+            </div>
             <div class="grow">
-                <h2 class="font-bold">{{ $patient->full_name }} (#{{ $patient->id }})</h2>
-                <p>DOB: {{ $patient->dob }}</p>
-                <p>Age: {{ $patient->age }}</p>
-                <p>Email: {{ $patient->email }}</p>
+                <livewire:contact-info :contacts="$patient->contacts" />
             </div>
             <div class="flex-none text-right">
                 <flux:dropdown>
@@ -24,6 +28,12 @@
                         <flux:menu.item icon="plus">
                             <flux:modal.trigger :name="'edit-profile-'.$patient->id">
                                 <a href="#">Edit profile</a>
+                            </flux:modal.trigger>
+                        </flux:menu.item>
+
+                        <flux:menu.item icon="plus">
+                            <flux:modal.trigger :name="'edit-contact-'.$patient->id">
+                                <a href="#">Edit Contact</a>
                             </flux:modal.trigger>
                         </flux:menu.item>
 
@@ -42,6 +52,13 @@
                     class="w-1/2"
                 >
                     <livewire:patient-form :patient="$patient" />
+                </flux:modal>
+
+                <flux:modal
+                    :name="'edit-contact-'.$patient->id"
+                    class="w-1/2"
+                >
+                    <livewire:contact-form :patient="$patient" />
                 </flux:modal>
             </div>
         </div>

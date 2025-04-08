@@ -70,4 +70,11 @@ class Patient extends Authenticatable implements HasMedia {
         }
         return $avatar;
     }
+
+    /***
+     * Relationships
+     */
+    public function contacts() {
+        return $this->morphMany(Contact::class, 'on');
+    }
 }

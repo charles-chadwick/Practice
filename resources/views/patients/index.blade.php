@@ -17,7 +17,7 @@
 
                     <div class="min-w-0 flex-1">
                         <a
-                            href="{{ route('patients.show', $patient->id) }}"
+                            href="{{ route('patients.profile', $patient->id) }}"
                             class="focus:outline-none"
                         >
                             <span
