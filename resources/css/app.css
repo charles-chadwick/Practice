@@ -39,3 +39,11 @@
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+.section-header {
+    @apply font-bold;
+    @apply border-b;
+    @apply border-zinc-200;
+    @apply pb-2;
+    @apply mb-2;
+}

@@ -11,11 +11,10 @@
                 >
             </div>
             <div class="flex-none">
-                <h2 class="font-bold mb-2">{{ $patient->full_name }} (#{{ $patient->id }})</h2>
-                <p class=" text-sm">DOB: {{ $patient->dob }}</p>
-                <p class=" text-sm">Age: {{ $patient->age }}</p>
-                <p class=" text-sm">Email: {{ $patient->email }}</p>
-
+                <h2 class="section-header">{{ $patient->full_name }} (#{{ $patient->id }})</h2>
+                <p class="text-sm"><span class="font-bold">DOB:</span> {{ $patient->dob }}</p>
+                <p class="text-sm"><span class="font-bold">Age:</span> {{ $patient->age }}</p>
+                <p class="text-sm"><span class="font-bold">Email:</span> {{ $patient->email }}</p>
             </div>
             <div class="grow">
                 <livewire:contact-info :contacts="$patient->contacts" />
