@@ -123,10 +123,9 @@
         </div>
     </nav>
 
-    <header class="bg-white shadow-sm">
-        <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-            <h1 class="text-lg/6 font-semibold text-zinc-900">@yield("title")</h1>
-        </div>
+    <header class="bg-white shadow-sm flex text-left">
+        <h1 class="shrink-0 px-4 py-4 sm:px-6 lg:px-8 text-lg/6 font-semibold text-zinc-900">@yield("title")</h1>
+        <p class="grow text-right px-4 py-4 sm:px-6 lg:px-8 text-lg/6 font-semibold text-zinc-900 ">@yield("subtitle")</p>
     </header>
     <main>
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
