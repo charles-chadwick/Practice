@@ -54,14 +54,34 @@ class Patient extends Authenticatable implements HasMedia {
         ];
     }
 
+    /**
+     * Get the patient's full name
+     * @return string
+     */
     public function getFullNameAttribute() : string {
         return preg_replace("/\s{2,}/", " ", "{$this->first} {$this->middle} {$this->last}");
     }
 
+    /**
+     * Get the patient's date of birth
+     * @return string
+     */
+    public function getDobAttribute() : string {
+        return Carbon::parse($this->attributes['dob'])->format('m/d/Y');
+    }
+
+    /**
+     * Calculate the patient's age
+     * @return string
+     */
     public function getAgeAttribute() : string {
         return Carbon::parse($this->dob)->diff(Carbon::now())->format('%y years %m months');
     }
 
+    /**
+     * Get the avatar URL
+     * @return array|string
+     */
     public function getAvatarAttribute() : array|string {
 
         $avatar = $this->getFirstMediaUrl('avatars');

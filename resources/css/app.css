@@ -47,3 +47,24 @@
     @apply pb-2;
     @apply mb-2;
 }
+
+.btn-primary {
+    @apply relative;
+    @apply inline-flex;
+    @apply items-center;
+    @apply px-4;
+    @apply py-2;
+    @apply border;
+    @apply border-transparent;
+    @apply text-sm;
+    @apply font-medium;
+    @apply rounded-md;
+    @apply shadow-sm;
+    @apply text-white;
+    @apply bg-lime-600;
+    @apply hover:bg-lime-700;
+    @apply focus:outline-none;
+    @apply focus:ring-2;
+    @apply focus:ring-offset-2;
+    @apply focus:ring-lime-500;
+}
