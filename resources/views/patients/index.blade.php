@@ -1,10 +1,12 @@
 @extends("app")
 @section("title", "Patients")
 @section("subtitle")
-    <livewire:sort-menu route="patients.index" :options="$options" />
+
 @endsection
 @section("content")
-
+    <div class="flex my-2 ">
+        <livewire:sort-menu route="patients.index" :options="$options" />
+    </div>
     <div class="grid grid-cols-1 gap-2">
         @forelse($patients as $patient)
             <div class="relative flex items-center space-x-3 rounded-lg border border-stone-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-lime-500 focus-within:ring-offset-2 hover:border-lime-400 hover:bg-lime-100">

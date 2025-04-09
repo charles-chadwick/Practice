@@ -15,6 +15,7 @@ class SortMenu extends Component
     public function mount($route, $options) : void {
         $this->options = $options;
         $this->sort_by = request('sort_by', array_key_first($this->options));
+        $this->sort_direction = request('sort_direction', "asc");
         $this->route = $route;
     }
 
@@ -22,10 +23,7 @@ class SortMenu extends Component
         return view('livewire.sort-menu');
     }
 
-    public function sortBy($sort_direction = null) {
-        if ($sort_direction !== null) {
-            $this->sort_direction = $sort_direction;
-        }
+    public function sortBy() {
 
         redirect(route($this->route, [
             "sort_by" => $this->sort_by,
