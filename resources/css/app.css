@@ -68,3 +68,24 @@
     @apply focus:ring-offset-2;
     @apply focus:ring-lime-500;
 }
+
+.table-list > thead > tr> th {
+    @apply px-6;
+    @apply py-2;
+    @apply text-center;
+    @apply text-sm;
+    @apply font-bold;
+    @apply bg-stone-600/50;
+    @apply text-white;
+    @apply uppercase;
+    @apply tracking-wider;
+}
+
+.table-list > tbody > tr> td {
+    @apply px-6;
+    @apply py-2;
+    @apply tracking-wider;
+}
+.table-list > tbody > tr:nth-child(odd) {
+    @apply bg-stone-100;
+}

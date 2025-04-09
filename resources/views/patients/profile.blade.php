@@ -6,7 +6,7 @@
         {{ $value }}
     </div>
     @endsession
-    <div class="flex gap-2 p-4 bg-white rounded shadow text-stone-800">
+    <div class="flex gap-2 p-4 mb-4 bg-white rounded shadow text-stone-800">
         <img
                 src="{{ $patient->avatar }}"
                 alt="{{ $patient->full_name }}"
@@ -17,18 +17,29 @@
             <p>{{ $patient->full_name }}</p>
             <p>{{ $patient->dob }}</p>
         </div>
-        <div class="shrink-0">
-            <flux:modal.trigger name="AddAppointment">
-                <flux:button>Add Appointment</flux:button>
-                <a href=""></a>
-            </flux:modal.trigger>
-            <flux:modal
-                    name="AddAppointment"
-                    class="w-full"
-            >
-                <livewire:appointment-form :patient="$patient" />
-            </flux:modal>
+
+
+    </div>
+
+    <div class="p-4 mb-2 bg-white rounded shadow text-stone-800">
+        <div class="flex mb-4 gap-2">
+            <div class="grow">
+                <h2 class="font-bold">Appointments</h2>
+            </div>
+            <div class="shrink-0">
+                <flux:modal.trigger name="AddAppointment">
+                    <flux:button>Add Appointment</flux:button>
+                    <a href=""></a>
+                </flux:modal.trigger>
+                <flux:modal
+                        name="AddAppointment"
+                        class="w-full"
+                >
+                    <livewire:appointment-form :patient="$patient" />
+                </flux:modal>
+            </div>
         </div>
 
+        <livewire:appointment-list :patient="$patient" :appointments="$patient->appointments"></livewire:appointment-list>
     </div>
 @endsection
