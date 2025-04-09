@@ -20,11 +20,10 @@ class PatientController extends Controller {
         ]);
     }
 
-//    public function profile(Patient $patient)
-//    {
-//        $patient->load("contacts");
-//        return view("patients.profile", [
-//            "patient" => $patient
-//        ]);
-//    }
+    public function profile(Patient $patient)
+    {
+        return view("patients.profile", [
+            "patient" => $patient
+        ]);
+    }
 }

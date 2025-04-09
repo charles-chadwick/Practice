@@ -6,6 +6,8 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -94,7 +96,11 @@ class Patient extends Authenticatable implements HasMedia {
     /***
      * Relationships
      */
-    public function contacts() {
+    public function contacts() : MorphMany {
         return $this->morphMany(Contact::class, 'on');
+    }
+
+    public function appointments() : Patient|HasMany {
+        return $this->hasMany(Appointment::class);
     }
 }

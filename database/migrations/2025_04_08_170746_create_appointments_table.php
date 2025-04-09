@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->unsignedBigInteger("doctor_id");
             $table->string("status");
             $table->string("type");
-            $table->dateTime("start_time");
-            $table->dateTime("end_time");
+            $table->dateTime("start");
+            $table->dateTime("end");
             $table->string("reason");
             $table->string("notes")->nullable();
             $table->timestamps();

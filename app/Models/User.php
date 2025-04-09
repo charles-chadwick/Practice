@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,5 +50,26 @@ class User extends Authenticatable implements HasMedia
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getFullNameAttribute() : string {
+        return "{$this->first} {$this->last}";
+    }
+
+    /**
+     * Get the avatar URL
+     * @return array|string
+     */
+    public function getAvatarAttribute() : array|string {
+
+        $avatar = $this->getFirstMediaUrl('avatars');
+        if ( env('APP_ENV') === 'local' ) {
+            $avatar = str_replace('localhost', $_SERVER[ 'HTTP_HOST' ], $avatar);
+        }
+        return $avatar;
+    }
+
+    public function appointments() : HasMany {
+        return $this->hasMany(Appointment::class, "doctor_id", "id");
     }
 }

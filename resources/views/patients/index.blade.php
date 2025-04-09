@@ -19,7 +19,7 @@
                 </div>
                 <div class="min-w-0 flex-1">
                     <a
-                            href="#"
+                            href="{{ route("patients.profile", $patient) }}"
                             class="focus:outline-none"
                     >
                         <p class="font-bold text-stone-900">{{ $patient->full_name }} (#{{ $patient->id }}) </p>
