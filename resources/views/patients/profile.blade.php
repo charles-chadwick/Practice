@@ -1,11 +1,7 @@
 @extends("app")
 @section("title", "Profile for {$patient->full_name} (#$patient->id)")
 @section("content")
-    @session("message")
-    <div class="bg-lime-100 border-2 border-lime-500 rounded-b text-lime-900 px-4 py-3 shadow-md">
-        {{ $value }}
-    </div>
-    @endsession
+    <x-alert />
     <div class="flex gap-2 p-4 mb-4 bg-white rounded shadow text-stone-800">
         <img
                 src="{{ $patient->avatar }}"
@@ -29,7 +25,6 @@
             <div class="shrink-0">
                 <flux:modal.trigger name="AddAppointment">
                     <flux:button>Add Appointment</flux:button>
-                    <a href=""></a>
                 </flux:modal.trigger>
                 <flux:modal
                         name="AddAppointment"
@@ -41,5 +36,26 @@
         </div>
 
         <livewire:appointment-list :patient="$patient" :appointments="$patient->appointments"></livewire:appointment-list>
+    </div>
+
+    <div class="p-4 mb-2 bg-white rounded shadow text-stone-800">
+        <div class="flex mb-4 gap-2">
+            <div class="grow">
+                <h2 class="font-bold">Notes</h2>
+            </div>
+            <div class="shrink-0">
+                <flux:modal.trigger name="AddNote">
+                    <flux:button>Add Note</flux:button>
+                </flux:modal.trigger>
+                <flux:modal
+                        name="AddNote"
+                        class="w-full"
+                >
+
+                </flux:modal>
+            </div>
+        </div>
+
+        <livewire:note-list :patient="$patient" :notes="$patient->notes"></livewire:note-list>
     </div>
 @endsection

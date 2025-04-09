@@ -3,25 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Contact extends Model
-{
+class Note extends Model {
     use SoftDeletes;
 
     protected $fillable = [
         "on_type",
         "on_id",
-        "type",
-        "phone",
-        "address",
-        "city",
-        "state",
-        "zip"
+        "title",
+        "content"
     ];
 
+
     public function contactable() : MorphTo {
-        return $this->morphTo("contacts", "on_type", "on_id");
+        return $this->morphTo("notable", "on_type", "on_id");
+    }
+
+    public function user() : BelongsTo {
+        return $this->belongsTo(User::class);
     }
 }

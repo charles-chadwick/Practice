@@ -31,7 +31,7 @@
 
 <div class="min-h-full">
     <nav class="bg-lime-600">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between">
                 <div class="flex items-center">
                     <div class="shrink-0">
@@ -125,10 +125,10 @@
 
     <header class="bg-white shadow-sm flex text-left">
         <h1 class="shrink-0 px-4 py-4 sm:px-6 lg:px-8 text-lg/6 font-semibold text-zinc-900">@yield("title")</h1>
-        <p class="grow text-right px-4 py-4 sm:px-6 lg:px-8 text-lg/6 font-semibold text-zinc-900 ">@yield("subtitle")</p>
+        <div class="grow text-right px-4 py-4 sm:px-6 lg:px-8 text-lg/6 font-semibold text-zinc-900 ">@yield("subtitle")</div>
     </header>
     <main>
-        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div class="mx-auto px-4 py-6 sm:px-6 lg:px-8">
             @yield("content")
         </div>
     </main>

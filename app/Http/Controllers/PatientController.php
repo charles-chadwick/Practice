@@ -22,6 +22,10 @@ class PatientController extends Controller {
 
     public function profile(Patient $patient)
     {
+        $patient->load("appointments");
+        $patient->load("notes");
+        $patient->load("notes.user");
+
         return view("patients.profile", [
             "patient" => $patient
         ]);
