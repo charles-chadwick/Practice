@@ -33,6 +33,7 @@
                             <p class="text-sm/6 text-stone-900">{{ $appointment->doctor->full_name }}</p>
                             <p class="mt-1 text-xs/5 text-stone-500">{{ $appointment->doctor->role }}</p>
                         </div>
+                        <!--
                         <svg
                             class="size-5 flex-none text-stone-400"
                             viewBox="0 0 20 20"
@@ -46,6 +47,7 @@
                                 clip-rule="evenodd"
                             />
                         </svg>
+                        -->
                     </div>
 
                 </li>
