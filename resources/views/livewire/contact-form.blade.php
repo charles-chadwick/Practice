@@ -38,7 +38,7 @@
     <div class="grid grid-cols-1 gap-6 mb-4">
         <flux:input
             type="text"
-            wire:model="Address"
+            wire:model="address"
             label="Address"
             placeholder="Address"
         />

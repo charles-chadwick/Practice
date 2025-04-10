@@ -18,6 +18,7 @@ class ContactForm extends Component {
     public          $city;
     public          $state;
     public          $zip;
+    public          $notes;
     public          $type;
     public          $is_primary = 0;
     public          $types;
@@ -44,6 +45,7 @@ class ContactForm extends Component {
             'state'      => $this->address,
             'zip'        => $this->address,
             'type'       => $this->type,
+            'notes'       => $this->notes,
             'is_primary' => $this->is_primary,
             'on_id'      => $this->obj->id,
             'on_type'    => get_class($this->obj),
@@ -74,6 +76,7 @@ class ContactForm extends Component {
                 'city'       => 'nullable',
                 'state'      => 'nullable',
                 'zip'        => 'nullable',
+                'notes'        => 'nullable',
                 'is_primary' => 'required|integer|between:0,1',
             ];
     }
