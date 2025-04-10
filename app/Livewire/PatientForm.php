@@ -63,6 +63,6 @@ class PatientForm extends Component {
     }
 
     public function render() {
-        return view('livewire.note-form');
+        return view('livewire.patient-form');
     }
 }
