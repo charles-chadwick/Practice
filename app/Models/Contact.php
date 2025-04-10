@@ -14,11 +14,13 @@ class Contact extends Model
         "on_type",
         "on_id",
         "type",
+        "is_primary",
         "phone",
         "address",
         "city",
         "state",
-        "zip"
+        "zip",
+        "notes"
     ];
 
     public function contactable() : MorphTo {

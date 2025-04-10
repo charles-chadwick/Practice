@@ -14,12 +14,14 @@ return new class extends Migration {
             $table->id();
             $table->string("on_type");
             $table->unsignedBigInteger("on_id");
+            $table->integer("is_primary");
             $table->string("type");
             $table->string("phone");
             $table->string("address")->nullable();
             $table->string("city")->nullable();
             $table->string("state")->nullable();
             $table->string("zip")->nullable();
+            $table->text("notes")->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
