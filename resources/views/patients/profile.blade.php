@@ -5,23 +5,32 @@
 @endsection
 @section("content")
     <x-alert />
+
+    <!-- patient information -->
     <div class="flex gap-2 p-4 mb-4 bg-white rounded shadow text-stone-800">
 
         <!-- avatar -->
         <div class="shrink-0">
-        <img
-            src="{{ $patient->avatar }}"
-            alt="{{ $patient->full_name }}"
-            class="rounded-md w-28 h-28 drop-shadow"
-        >
+            <img
+                src="{{ $patient->avatar }}"
+                alt="{{ $patient->full_name }}"
+                class="rounded-md w-28 h-28 drop-shadow"
+            >
         </div>
 
         <!-- personal information -->
         <div class="grow px-4">
             <x-section-header header="Patient Information">
-                <flux:modal.trigger name="patient-information" class="text-sm">
-                    Edit
-                </flux:modal.trigger>
+                <flux:dropdown align="end">
+                    <flux:button size="xs">...</flux:button>
+                    <flux:menu>
+                        <flux:menu.item icon="plus">
+                            <flux:modal.trigger name="patient-information">
+                                Edit Profile
+                            </flux:modal.trigger>
+                        </flux:menu.item>
+                    </flux:menu>
+                </flux:dropdown>
                 <flux:modal
                     name="patient-information"
                     class="w-full"
@@ -39,9 +48,16 @@
         <!-- contact information -->
         <div class="grow">
             <x-section-header header="Contact Information">
-                <flux:modal.trigger name="contact-information" class="text-sm">
-                    Add Contact
-                </flux:modal.trigger>
+                <flux:dropdown align="end">
+                    <flux:button size="xs">...</flux:button>
+                    <flux:menu>
+                        <flux:menu.item icon="plus">
+                            <flux:modal.trigger name="contact-information">
+                                Create Contact
+                            </flux:modal.trigger>
+                        </flux:menu.item>
+                    </flux:menu>
+                </flux:dropdown>
                 <flux:modal
                     name="contact-information"
                     class="w-full"
@@ -60,9 +76,17 @@
 
     <x-section>
         <x-section-header header="Appointments">
-            <flux:modal.trigger name="add-appointment"  class="text-sm">
-                Add Appointment
-            </flux:modal.trigger>
+            <flux:dropdown align="end">
+                <flux:button size="xs">...</flux:button>
+                <flux:menu>
+                    <flux:menu.item icon="plus">
+                        <flux:modal.trigger name="add-appointment">
+                            Create Appointment
+                        </flux:modal.trigger>
+                    </flux:menu.item>
+
+                </flux:menu>
+            </flux:dropdown>
             <flux:modal
                 name="add-appointment"
                 class="w-full"
@@ -79,9 +103,17 @@
 
     <x-section class="w-1/2">
         <x-section-header header="Notes">
-            <flux:modal.trigger name="add-note">
-                <span class="text-sm">Add Note</span>
-            </flux:modal.trigger>
+            <flux:dropdown align="end">
+                <flux:button size="xs">...</flux:button>
+                <flux:menu>
+                    <flux:menu.item icon="plus">
+                        <flux:modal.trigger name="add-note">
+                            Create Note
+                        </flux:modal.trigger>
+                    </flux:menu.item>
+
+                </flux:menu>
+            </flux:dropdown>
 
             <flux:modal
                 name="add-note"
@@ -89,6 +121,7 @@
             >
                 <livewire:note-form :obj="$patient"></livewire:note-form>
             </flux:modal>
+
         </x-section-header>
 
         <livewire:note-list
