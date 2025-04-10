@@ -12,10 +12,25 @@
             class="rounded-md w-28 h-28 drop-shadow"
         >
         <div class="grow pl-4">
-            <x-section-header header="Patient Information"></x-section-header>
+            <x-section-header header="Patient Information" />
             <p><span class="font-semibold">Name: </span>{{ $patient->full_name }}</p>
             <p><span class="font-semibold">Date of Birth: </span>{{ $patient->dob }} ({{ $patient->age }})</p>
             <p><span class="font-semibold">MRN: </span> #{{ $patient->id }}</p>
+        </div>
+        <div class="grow">
+            <x-section-header header="Contact Information">
+                <flux:modal.trigger name="contact-information">
+                    Add Contact
+                </flux:modal.trigger>
+                <flux:modal
+                    name="contact-information"
+                    class="w-full"
+                >
+                    <livewire:contact-form :obj="$patient" />
+                </flux:modal>
+            </x-section-header>
+
+
         </div>
     </div>
 
