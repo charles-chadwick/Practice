@@ -11,17 +11,23 @@ use Livewire\Component;
 class NoteForm extends Component {
 
     public ?Note $note;
-    public       $obj = null;
+    public       $obj;
     public       $title;
     public       $content;
     public       $type;
+    public       $types;
     public       $action = "create";
 
     public function mount( Note $note = null ) : void {
+        $this->types = Note::$types;
+        $this->type = array_shift(Note::$types);
+
         if ( !is_null($note->id) ) {
             $this->note = $note;
             $this->fill($note);
         }
+
+
     }
 
     public function submit() : void {
@@ -42,7 +48,7 @@ class NoteForm extends Component {
             'user_id' => 1
         ];
 
-        if ( $this->action === "create" ) {
+        if ( ! isset($this->note->id) ) {
             $this->note = Note::create(
                 $note_data
             );

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Enums\AppointmentStatus;
 use App\Enums\UserRole;
 use App\Models\Appointment;
 use App\Models\Patient;
@@ -15,20 +16,27 @@ class AppointmentForm extends Component {
     public ?Appointment $appointment;
     public Patient      $patient;
 
-    public              $patient_id;
-    public              $doctor_id = 1;
-    public              $start_date;
-    public              $start_time;
-    public              $duration;
-    public              $notes;
-    public              $status;
-    public              $reason;
-    public              $type;
+    public $patient_id;
+    public $doctor_id = 1;
+    public $start_date;
+    public $start_time;
+    public $duration;
+    public $notes;
+    public $status;
+    public $reason;
+    public $type;
 
-    public              $doctors   = [];
-    public              $types   = [];
+    public $doctors  = [];
+    public $types    = [];
+    public $statuses = [];
 
     public function mount( Appointment $appointment = null ) : void {
+        $this->types = Appointment::$types;
+        $this->type = array_shift(Appointment::$types);
+
+        $statuses = AppointmentStatus::toArray();
+        $this->status = array_shift($statuses);
+        $this->statuses = AppointmentStatus::toArray();
 
         if ( !is_null($appointment->id) ) {
             $this->appointment = $appointment;
@@ -44,7 +52,7 @@ class AppointmentForm extends Component {
                                  ->get();
         }
 
-        $this->types = Appointment::$types;
+
     }
 
     public function submit() {
@@ -67,7 +75,8 @@ class AppointmentForm extends Component {
 
             session()->flash('message', 'Appointment created successfully.');
 
-        } else {
+        }
+        else {
             $this->appointment->update(
                 $appointment_data
             );

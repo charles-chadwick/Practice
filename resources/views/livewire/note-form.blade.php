@@ -1,13 +1,17 @@
 <form wire:submit="submit">
     <div class="gap-6">
 
-        <flux:input
-            type="text"
+        <flux:select
             wire:model="type"
             label="Type"
-            placeholder="Type"
-        />
-
+            placeholder="Choose type">
+            @foreach($types as $value)
+                <flux:select.option
+                    wire:key="{{ $value }}"
+                    value="{{ $value }}"
+                >{{ $value }}</flux:select.option>
+            @endforeach
+        </flux:select>
         <flux:input
             type="text"
             wire:model="title"

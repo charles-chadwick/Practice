@@ -7,6 +7,7 @@ use Livewire\Component;
 class NoteList extends Component
 {
     public $notes = [];
+    public $obj_on;
 
     public function render()
     {

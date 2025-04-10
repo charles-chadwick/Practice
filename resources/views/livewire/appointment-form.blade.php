@@ -7,7 +7,7 @@
             placeholder="Choose status..."
             label="Status"
         >
-            @foreach(\App\Enums\AppointmentStatus::toArray() as $key => $value)
+            @foreach($statuses as $key => $value)
                 <flux:select.option
                     wire:key="{{ $key }}"
                     value="{{ $key }}"
@@ -21,7 +21,7 @@
             placeholder="Choose type..."
             label="Type"
         >
-            @foreach(\App\Models\Appointment::$types as $key => $value)
+            @foreach($types as $key => $value)
                 <flux:select.option
                     wire:key="{{ $key }}"
                     value="{{ $key }}"

@@ -43,7 +43,7 @@
         ></livewire:appointment-list>
     </div>
 
-    <div class="p-4  mb-4 bg-white rounded shadow text-stone-800">
+    <div class="p-4  mb-4 bg-white rounded shadow text-stone-800 w-1/2">
         <div class="flex mb-4 gap-2">
             <div class="grow">
                 <h2 class="font-bold">Notes</h2>
@@ -61,6 +61,6 @@
                 <livewire:note-form :obj="$patient"></livewire:note-form>
             </flux:modal>
         </div>
-        <livewire:note-list :notes="$patient->notes" />
+        <livewire:note-list :notes="$patient->notes" :obj_on="$patient" />
     </div>
 @endsection

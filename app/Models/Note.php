@@ -20,8 +20,15 @@ class Note extends Model {
         "content"
     ];
 
+    public static array $types = [
+        "Admin"     => "Admin",
+        "Personal"  => "Personal",
+        "Financial" => "Financial",
+    ];
+
     public function getCreatedAtAttribute( $value ) : string {
-        return Carbon::parse( $value )->format( 'm/d/y h:m A' );
+        return Carbon::parse($value)
+                     ->format('m/d/y h:m A');
     }
 
     public function user() : BelongsTo {

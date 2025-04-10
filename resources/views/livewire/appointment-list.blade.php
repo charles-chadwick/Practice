@@ -23,7 +23,7 @@
                                 {{ $appointment->status }} : {{ $appointment->timeRange }}
                             </p>
                             <p class="mt-1 flex text-xs/5 text-stone-500">
-                                {{ $appointment->notes }}
+                                {{ Str::limit($appointment->notes, 120) }}
                             </p>
                         </div>
                     </div>
