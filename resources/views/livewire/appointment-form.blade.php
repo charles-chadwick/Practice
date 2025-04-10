@@ -1,6 +1,7 @@
-<form wire:submit="submit">
-    <div class="grid grid-cols-2 gap-6 mb-4">
+<form wire:submit.prevent="submit">
 
+    <!-- start status/type/doctor -->
+    <div class="grid grid-cols-3 gap-6 mb-4">
 
         <flux:select
             wire:model="status"
@@ -29,9 +30,22 @@
             @endforeach
 
         </flux:select>
+        <flux:select
+            wire:model="doctor_id"
+            placeholder="With..."
+            label="Provider / Staff"
+        >
+            @foreach($doctors as $doctor)
+                <flux:select.option
+                    wire:key="{{ $doctor->id }}"
+                    value="{{ $doctor->id }}"
+                >{{ $doctor->full_name }}</flux:select.option>
+            @endforeach
 
+        </flux:select>
     </div>
 
+    <!-- start date/time and length -->
     <div class="grid grid-cols-3 gap-6 mb-4">
         <flux:input
             type="date"
@@ -49,7 +63,8 @@
         <flux:select
             wire:model="duration"
             label="Duration"
-            placeholder="Choose duration">
+            placeholder="Choose duration"
+        >
             @foreach(\App\Models\Appointment::$durations as $value)
                 <flux:select.option
                     wire:key="{{ $value }}"
@@ -57,7 +72,11 @@
                 >{{ $value }}</flux:select.option>
             @endforeach
         </flux:select>
+
+        <div>@error('date_time_mismatch') {{ $message }} @enderror</div>
     </div>
+
+    <!-- start reason -->
     <div class="grid grid-cols-1 gap-6 mb-4">
         <flux:input
             type="text"
@@ -67,6 +86,7 @@
         />
     </div>
 
+    <!-- start notes -->
     <div class="grid grid-cols-1 gap-6 mb-4">
         <flux:textarea
             wire:model="notes"
@@ -75,6 +95,7 @@
         />
     </div>
 
+    <!-- start submit -->
     <div class="text-center gap-4 pt-6 ">
         <button
             type="submit"
