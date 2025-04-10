@@ -16,12 +16,20 @@
 
         </flux:select>
 
-        <flux:input
-            type="text"
+        <flux:select
             wire:model="type"
+            placeholder="Choose type..."
             label="Type"
-            placeholder="Type"
-        />
+        >
+            @foreach(\App\Models\Appointment::$types as $key => $value)
+                <flux:select.option
+                    wire:key="{{ $key }}"
+                    value="{{ $key }}"
+                >{{ $value }}</flux:select.option>
+            @endforeach
+
+        </flux:select>
+
     </div>
 
     <div class="grid grid-cols-3 gap-6 mb-4">
@@ -37,12 +45,18 @@
             label="Time"
             placeholder="Time"
         />
-        <flux:input
-            type="number"
+
+        <flux:select
             wire:model="duration"
             label="Duration"
-            placeholder="Duration"
-        />
+            placeholder="Choose duration">
+            @foreach(\App\Models\Appointment::$durations as $value)
+                <flux:select.option
+                    wire:key="{{ $value }}"
+                    value="{{ $value }}"
+                >{{ $value }}</flux:select.option>
+            @endforeach
+        </flux:select>
     </div>
     <div class="grid grid-cols-1 gap-6 mb-4">
         <flux:input

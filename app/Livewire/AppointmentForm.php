@@ -14,7 +14,7 @@ use Livewire\Component;
 class AppointmentForm extends Component {
     public ?Appointment $appointment;
     public Patient      $patient;
-    public              $doctors   = [];
+
     public              $patient_id;
     public              $doctor_id = 1;
     public              $start_date;
@@ -24,6 +24,9 @@ class AppointmentForm extends Component {
     public              $status;
     public              $reason;
     public              $type;
+
+    public              $doctors   = [];
+    public              $types   = [];
 
     public function mount( Appointment $appointment = null ) : void {
 
@@ -40,6 +43,8 @@ class AppointmentForm extends Component {
             $this->doctors = User::where('role', UserRole::Doctor->value)
                                  ->get();
         }
+
+        $this->types = Appointment::$types;
     }
 
     public function submit() {

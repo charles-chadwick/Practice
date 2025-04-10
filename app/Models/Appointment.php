@@ -19,10 +19,20 @@ class Appointment extends Model {
         "notes"
     ];
 
+    public static array $types = [
+        "In Office"   => "In Office",
+        "Home Visit"  => "Home Visit",
+        "Phone Visit" => "Phone Visit"
+    ];
+
+    public static array $durations = [
+        10, 15, 30, 45
+    ];
 
     public function getTimeRangeAttribute() : string {
-        $start = Carbon::parse($this->attributes['start']);
-        $end = Carbon::parse($this->attributes['start'])->addMinutes($this->attributes['duration']);
+        $start = Carbon::parse($this->attributes[ 'start' ]);
+        $end = Carbon::parse($this->attributes[ 'start' ])
+                     ->addMinutes($this->attributes[ 'duration' ]);
         return $start->format("m/d/Y h:i a").' to '.$end->format("h:i a");
     }
 
