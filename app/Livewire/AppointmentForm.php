@@ -6,7 +6,8 @@ use App\Enums\UserRole;
 use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use Carbon\Carbon;
+
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -16,20 +17,23 @@ class AppointmentForm extends Component {
     public              $doctors   = [];
     public              $patient_id;
     public              $doctor_id = 1;
-    public              $start;
+    public              $start_date;
+    public              $start_time;
     public              $duration;
     public              $notes;
     public              $status;
     public              $reason;
     public              $type;
-    private             $action    = "create";
 
     public function mount( Appointment $appointment = null ) : void {
 
         if ( !is_null($appointment->id) ) {
             $this->appointment = $appointment;
             $this->fill($appointment);
-            $this->action = "update";
+            $this->start_date = Carbon::parse($appointment->start)
+                                      ->format('Y-m-d');
+            $this->start_time = Carbon::parse($appointment->start)
+                                      ->format('H:i');
         }
 
         if ( count($this->doctors) == 0 ) {
@@ -38,38 +42,46 @@ class AppointmentForm extends Component {
         }
     }
 
-    public function submit() : RedirectResponse|null {
+    public function submit() {
         $this->validate();
 
-        if ( $this->action === "create" ) {
+        $appointment_data = [
+            "doctor_id"  => $this->doctor_id,
+            "patient_id" => $this->patient->id,
+            "start"      => $this->start_date.' '.$this->start_time,
+            "duration"   => $this->duration,
+            "notes"      => $this->notes,
+            "status"     => $this->status,
+            "reason"     => $this->reason,
+            "type"       => $this->type,
+        ];
+
+        if ( !isset($this->appointment->id) ) {
             $this->appointment = Appointment::create(
-                [
-                    "doctor_id"  => $this->doctor_id,
-                    "patient_id" => $this->patient->id,
-                    "start"      => $this->start,
-                    "duration"   => $this->duration,
-                    "notes"      => $this->notes,
-                    "status"     => $this->status,
-                    "reason"     => $this->reason,
-                    "type"       => $this->type,
-                ]);
+                $appointment_data);
 
             session()->flash('message', 'Appointment created successfully.');
-            return redirect(route('patients.profile', $this->patient->id));
+
+        } else {
+            $this->appointment->update(
+                $appointment_data
+            );
+            session()->flash('message', 'Appointment updated successfully.');
         }
 
-        return null;
+        return redirect(route('patients.profile', $this->patient->id));
     }
 
     public function rules() : array {
         return [
-            "doctor_id" => "required|exists:users,id",
-            "start"     => "required|date|after:today",
-            "end"       => "required|date|after:start",
-            "notes"     => "nullable|string",
-            "status"    => "required|string",
-            "reason"    => "required|string",
-            "type"      => "required|string",
+            "doctor_id"  => "required|exists:users,id",
+            "start_date" => "required|date|date_format:Y-m-d",
+            "start_time" => "required|date_format:H:i",
+            "duration"   => "required|numeric",
+            "notes"      => "nullable|string",
+            "status"     => "required|string",
+            "reason"     => "required|string",
+            "type"       => "required|string",
         ];
     }
 
