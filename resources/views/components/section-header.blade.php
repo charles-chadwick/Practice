@@ -1,4 +1,4 @@
-<div class="flex mb-4 gap-2">
+<div class="flex mb-4 gap-2  border-b-stone-200 border-b pb-2">
     <div class="grow">
         <h2 class="font-bold">{{ $header }}</h2>
     </div>

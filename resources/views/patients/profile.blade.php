@@ -6,20 +6,40 @@
 @section("content")
     <x-alert />
     <div class="flex gap-2 p-4 mb-4 bg-white rounded shadow text-stone-800">
+
+        <!-- avatar -->
+        <div class="shrink-0">
         <img
             src="{{ $patient->avatar }}"
             alt="{{ $patient->full_name }}"
             class="rounded-md w-28 h-28 drop-shadow"
         >
-        <div class="grow pl-4">
-            <x-section-header header="Patient Information" />
-            <p><span class="font-semibold">Name: </span>{{ $patient->full_name }}</p>
-            <p><span class="font-semibold">Date of Birth: </span>{{ $patient->dob }} ({{ $patient->age }})</p>
-            <p><span class="font-semibold">MRN: </span> #{{ $patient->id }}</p>
         </div>
+
+        <!-- personal information -->
+        <div class="grow px-4">
+            <x-section-header header="Patient Information">
+                <flux:modal.trigger name="patient-information" class="text-sm">
+                    Edit
+                </flux:modal.trigger>
+                <flux:modal
+                    name="patient-information"
+                    class="w-full"
+                >
+                    <livewire:patient-form :patient="$patient" />
+                </flux:modal>
+            </x-section-header>
+            <div class="text-sm">
+                <p><span class="font-semibold">Name: </span>{{ $patient->full_name }}</p>
+                <p><span class="font-semibold">Date of Birth: </span>{{ $patient->dob }} ({{ $patient->age }})</p>
+                <p><span class="font-semibold">MRN: </span> #{{ $patient->id }}</p>
+            </div>
+        </div>
+
+        <!-- contact information -->
         <div class="grow">
             <x-section-header header="Contact Information">
-                <flux:modal.trigger name="contact-information">
+                <flux:modal.trigger name="contact-information" class="text-sm">
                     Add Contact
                 </flux:modal.trigger>
                 <flux:modal
@@ -29,18 +49,22 @@
                     <livewire:contact-form :obj="$patient" />
                 </flux:modal>
             </x-section-header>
-
-
+            <div class="text-sm">
+                <livewire:contact-list
+                    :obj="$patient"
+                    :contacts="$patient->contacts"
+                />
+            </div>
         </div>
     </div>
 
     <x-section>
         <x-section-header header="Appointments">
-            <flux:modal.trigger name="AddAppointment">
-                <flux:button>Add Appointment</flux:button>
+            <flux:modal.trigger name="add-appointment"  class="text-sm">
+                Add Appointment
             </flux:modal.trigger>
             <flux:modal
-                name="AddAppointment"
+                name="add-appointment"
                 class="w-full"
             >
                 <livewire:appointment-form :patient="$patient" />
@@ -55,12 +79,12 @@
 
     <x-section class="w-1/2">
         <x-section-header header="Notes">
-            <flux:modal.trigger name="AddNote">
-                <flux:button>Add Note</flux:button>
+            <flux:modal.trigger name="add-note">
+                <span class="text-sm">Add Note</span>
             </flux:modal.trigger>
 
             <flux:modal
-                name="AddNote"
+                name="add-note"
                 class="w-full"
             >
                 <livewire:note-form :obj="$patient"></livewire:note-form>
