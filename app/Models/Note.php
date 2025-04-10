@@ -13,6 +13,7 @@ class Note extends Model {
     protected $fillable = [
         "on_type",
         "on_id",
+        "user_id",
         "title",
         "content"
     ];

@@ -18,6 +18,7 @@
                             aria-hidden="true"
                         ></span>
                     <p class="text-sm font-medium text-stone-900">{{ $note->title }}</p>
+                    <p class="text-sm text-stone-700">{{ $note->created_at }}</p>
                     <p class="truncate text-sm text-stone-500">{{ $note->content }}</p>
                 </a>
             </div>
