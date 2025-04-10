@@ -1,6 +1,6 @@
 <ul
     role="list"
-    class="divide-y divide-stone-100 overflow-hidden bg-white shadow-sm ring-1 ring-stone-900/5 sm:rounded-xl"
+    class="divide-y divide-stone-100 overflow-hidden bg-white ring-1 ring-stone-900/5"
 >
     @forelse($appointments as $appointment)
         <li class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-stone-50 sm:px-6">
@@ -15,7 +15,7 @@
                         </flux:modal.trigger>
                     </p>
                     <p class="text-sm">
-                        {{ $appointment->timeRange }}
+                       {{ $appointment->status }} : {{ $appointment->timeRange }}
                     </p>
                     <p class="mt-1 flex text-xs/5 text-stone-500">
                    {{ $appointment->notes }}
@@ -44,8 +44,8 @@
             </div>
 
         </li>
-        <flux:modal :name="'edit-appointment-'.$appointment->id">
-            <livewire:appointment-form :appointment="$appointment" />
+        <flux:modal :name="'edit-appointment-'.$appointment->id" >
+            <livewire:appointment-form :appointment="$appointment" :patient="$patient" />
         </flux:modal>
     @empty
         <p>There are no appointments.</p>
