@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="p-4 mb-2 bg-white rounded shadow text-stone-800">
+    <div class="p-4 mb-4 bg-white rounded shadow text-stone-800">
         <div class="flex mb-4 gap-2">
             <div class="grow">
                 <h2 class="font-bold">Appointments</h2>
@@ -43,7 +43,7 @@
         ></livewire:appointment-list>
     </div>
 
-    <div class="p-4 mb-2 bg-white rounded shadow text-stone-800">
+    <div class="p-4  mb-4 bg-white rounded shadow text-stone-800">
         <div class="flex mb-4 gap-2">
             <div class="grow">
                 <h2 class="font-bold">Notes</h2>
