@@ -14,6 +14,7 @@ class Note extends Model {
         "on_type",
         "on_id",
         "user_id",
+        "type",
         "title",
         "content"
     ];

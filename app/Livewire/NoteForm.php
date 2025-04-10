@@ -37,7 +37,7 @@ class NoteForm extends Component {
             'content' => $this->content,
             'type'    => $this->type,
             'on_id'   => $this->class->id,
-            'on'      => get_class($this->class),
+            'on_type' => get_class($this->class),
             'user_id' => 1
         ];
 
@@ -53,7 +53,7 @@ class NoteForm extends Component {
             session()->flash('message', 'Note updated successfully.');
         }
 
-        redirect(route('patients.profile', $this->patient_id));
+        redirect(route('patients.profile', $this->patient->id));
     }
 
     public function render() {
