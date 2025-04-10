@@ -13,21 +13,10 @@
         >
         <div class="grow pl-4">
             <h2 class="font-bold pb-2 mb-2 border-b border-b-stone-100 text-lg">Patient Information</h2>
-            <flux:modal.trigger name="EditProfile">
-                <flux:button>Edit Profile</flux:button>
-            </flux:modal.trigger>
-            <flux:modal
-                name="EditProfile"
-                class="w-full"
-            >
-
-            </flux:modal>
             <p><span class="font-semibold">Name: </span>{{ $patient->full_name }}</p>
             <p><span class="font-semibold">Date of Birth: </span>{{ $patient->dob }} ({{ $patient->age }})</p>
             <p><span class="font-semibold">MRN: </span> #{{ $patient->id }}</p>
         </div>
-
-
     </div>
 
     <div class="p-4 mb-2 bg-white rounded shadow text-stone-800">
@@ -63,13 +52,14 @@
                 <flux:modal.trigger name="AddNote">
                     <flux:button>Add Note</flux:button>
                 </flux:modal.trigger>
-                <flux:modal
-                    name="AddNote"
-                    class="w-full"
-                >
-                    <livewire:note-form :obj="$patient"></livewire:note-form>
-                </flux:modal>
+
             </div>
+            <flux:modal
+                name="AddNote"
+                class="w-full"
+            >
+                <livewire:note-form :obj="$patient"></livewire:note-form>
+            </flux:modal>
         </div>
         <livewire:note-list :notes="$patient->notes" />
     </div>
