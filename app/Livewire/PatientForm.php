@@ -59,7 +59,7 @@ class PatientForm extends Component {
             session()->flash('message', 'Patient updated successfully.');
         }
 
-        return redirect(route('patients.profile', $this->patient_id));
+        return redirect(route('patients.profile', $this->patient->id));
     }
 
     public function render() {
