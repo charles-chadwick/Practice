@@ -41,11 +41,11 @@ class ContactForm extends Component {
         $contact_data = [
             'phone'      => $this->phone,
             'address'    => $this->address,
-            'city'       => $this->address,
-            'state'      => $this->address,
-            'zip'        => $this->address,
+            'city'       => $this->city,
+            'state'      => $this->state,
+            'zip'        => $this->zip,
             'type'       => $this->type,
-            'notes'       => $this->notes,
+            'notes'      => $this->notes,
             'is_primary' => $this->is_primary,
             'on_id'      => $this->obj->id,
             'on_type'    => get_class($this->obj),
@@ -76,7 +76,7 @@ class ContactForm extends Component {
                 'city'       => 'nullable',
                 'state'      => 'nullable',
                 'zip'        => 'nullable',
-                'notes'        => 'nullable',
+                'notes'      => 'nullable',
                 'is_primary' => 'required|integer|between:0,1',
             ];
     }
