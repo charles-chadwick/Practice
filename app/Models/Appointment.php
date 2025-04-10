@@ -21,10 +21,9 @@ class Appointment extends Model {
 
 
     public function getTimeRangeAttribute() : string {
-        return Carbon::parse($this->attributes[ "start" ])
-                     ->format('m/d/y h:m A')." to ".
-               Carbon::parse($this->attributes[ "end" ])
-                     ->format('m/d/y h:m A');
+        $start = Carbon::parse($this->attributes['start']);
+        $end = Carbon::parse($this->attributes['start'])->addMinutes($this->attributes['duration']);
+        return $start->format("m/d/Y h:i a").' to '.$end->format("h:i a");
     }
 
 
