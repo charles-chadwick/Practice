@@ -15,8 +15,6 @@
             placeholder="Title"
         />
 
-
-
         <flux:textarea
             wire:model="content"
             label="Content"

@@ -5,12 +5,13 @@ namespace App\Livewire;
 use App\Models\Note;
 use App\Models\Patient;
 use Illuminate\Notifications\Action;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class NoteForm extends Component {
 
     public ?Note $note;
-    public       $class  = null;
+    public       $obj = null;
     public       $title;
     public       $content;
     public       $type;
@@ -23,7 +24,7 @@ class NoteForm extends Component {
         }
     }
 
-    public function submit() {
+    public function submit() : void {
 
         $this->validate(
             [
@@ -36,8 +37,8 @@ class NoteForm extends Component {
             'title'   => $this->title,
             'content' => $this->content,
             'type'    => $this->type,
-            'on_id'   => $this->class->id,
-            'on_type' => get_class($this->class),
+            'on_id'   => $this->obj->id,
+            'on_type' => get_class($this->obj),
             'user_id' => 1
         ];
 
@@ -53,10 +54,10 @@ class NoteForm extends Component {
             session()->flash('message', 'Note updated successfully.');
         }
 
-        redirect(route('patients.profile', $this->patient->id));
+        redirect(route('patients.profile', $this->obj->id));
     }
 
-    public function render() {
+    public function render() : View {
         return view('livewire.note-form');
     }
 }

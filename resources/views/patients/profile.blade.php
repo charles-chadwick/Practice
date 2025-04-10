@@ -67,14 +67,10 @@
                     name="AddNote"
                     class="w-full"
                 >
-                    <livewire:note-form :class="$patient"></livewire:note-form>
+                    <livewire:note-form :obj="$patient"></livewire:note-form>
                 </flux:modal>
             </div>
         </div>
-
-        <livewire:note-list
-            :patient="$patient"
-            :notes="$patient->notes"
-        ></livewire:note-list>
+        <livewire:note-list :notes="$patient->notes" />
     </div>
 @endsection

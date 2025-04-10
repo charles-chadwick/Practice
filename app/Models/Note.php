@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -19,9 +20,8 @@ class Note extends Model {
         "content"
     ];
 
-
-    public function contactable() : MorphTo {
-        return $this->morphTo("notable", "on_type", "on_id");
+    public function getCreatedAtAttribute( $value ) : string {
+        return Carbon::parse( $value )->format( 'm/d/y h:m A' );
     }
 
     public function user() : BelongsTo {
