@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string("status");
             $table->string("type");
             $table->dateTime("start");
-            $table->dateTime("end");
+            $table->integer("duration");
             $table->string("reason");
             $table->string("notes")->nullable();
             $table->timestamps();

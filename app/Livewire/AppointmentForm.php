@@ -6,6 +6,7 @@ use App\Enums\UserRole;
 use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -16,7 +17,7 @@ class AppointmentForm extends Component {
     public              $patient_id;
     public              $doctor_id = 1;
     public              $start;
-    public              $end;
+    public              $duration;
     public              $notes;
     public              $status;
     public              $reason;
@@ -37,7 +38,7 @@ class AppointmentForm extends Component {
         }
     }
 
-    public function submit() {
+    public function submit() : RedirectResponse|null {
         $this->validate();
 
         if ( $this->action === "create" ) {
@@ -46,7 +47,7 @@ class AppointmentForm extends Component {
                     "doctor_id"  => $this->doctor_id,
                     "patient_id" => $this->patient->id,
                     "start"      => $this->start,
-                    "end"        => $this->end,
+                    "duration"   => $this->duration,
                     "notes"      => $this->notes,
                     "status"     => $this->status,
                     "reason"     => $this->reason,
@@ -54,11 +55,13 @@ class AppointmentForm extends Component {
                 ]);
 
             session()->flash('message', 'Appointment created successfully.');
-            redirect(route('patients.profile', $this->patient->id));
+            return redirect(route('patients.profile', $this->patient->id));
         }
+
+        return null;
     }
 
-    public function rules() {
+    public function rules() : array {
         return [
             "doctor_id" => "required|exists:users,id",
             "start"     => "required|date|after:today",
