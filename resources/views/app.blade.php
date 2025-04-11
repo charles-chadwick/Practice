@@ -38,21 +38,14 @@
                         <img
                             class="size-8"
                             src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=lime&shade=300"
-                            alt="Your Company"
+                            alt=""
                         >
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
-                            <!-- Current: "bg-lime-700 text-white", Default: "text-white hover:bg-lime-500/75" -->
-                            <a
-                                href="{{ route("home") }}"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-white bg-lime-700/75"
-
-                            >Dashboard</a>
-                            <a
-                                href="{{ route("patients.index") }}"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-lime-500/75"
-                            >Patients</a>
+                           @foreach(["home" => "Dashboard", "patients.index" => "Patients"] as $route => $label)
+                            <x-nav-link :route="$route" :label="$label" />
+                           @endforeach
                         </div>
                     </div>
                 </div>

@@ -4,41 +4,59 @@
 
 @endsection
 @section("content")
-    <div class="flex my-2 ">
-        <livewire:sort-menu route="patients.index" :options="$options" />
+    <div class="flex my-2">
+        <livewire:sort-menu
+            route="patients.index"
+            :options="$options"
+        />
     </div>
-    <div class="grid grid-cols-1 gap-2">
-        @forelse($patients as $patient)
-            <div class="relative flex items-center space-x-3 rounded-lg border border-stone-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-lime-500 focus-within:ring-offset-2 hover:border-lime-400 hover:bg-lime-100">
-                <div class="shrink-0">
-                    <img
-                            class="size-10 rounded-full"
-                            src="{{ $patient->avatar }}"
-                            alt="{{ $patient->full_name }}"
-                    >
-                </div>
-                <div class="min-w-0 flex-1">
-                    <a
-                            href="{{ route("patients.profile", $patient) }}"
-                            class="focus:outline-none"
-                    >
-                        <p class="font-bold text-stone-900">{{ $patient->full_name }} (#{{ $patient->id }}) </p>
-                        <p class="truncate text-sm text-stone-500">
-                            <span class="text-sm text-stone-900">DOB:</span> {{ $patient->dob }}
-                        </p>
-                    </a>
-                </div>
-                <div class="shrink-0">
-                    <button
-                            type="button"
-                            class="btn-primary"
-                    >
-                        Message
-                    </button>
-                </div>
-            </div>
-        @empty
-            <div>there are no patients!</div>
-        @endforelse
-    </div>
+    <x-section>
+
+        <div>
+            @if($patients->count() > 0)
+                <ul
+                    role="list"
+                    class="text-stone-500 overflow-hidden bg-white"
+                >
+                    @foreach($patients as $patient)
+                        <li class="relative flex justify-between gap-x-6 px-4 py-5 border border-stone-100 hover:border hover:border-lime-400 hover:bg-lime-100 sm:px-6">
+                            <div class="flex min-w-0 gap-x-4">
+                                <div class="shrink-0">
+                                    <img
+                                        class="size-10 rounded-full"
+                                        src="{{ $patient->avatar }}"
+                                        alt="{{ $patient->full_name }}"
+                                    >
+                                </div>
+                                <div class="min-w-0 flex-auto">
+
+                                    <a class="font-bold text-stone-900" href="{{ route("patients.profile", $patient->id) }}">{{ $patient->full_name }} (#{{ $patient->id }})</a>
+                                    <p class="mt-1 flex text-xs truncate">
+                                        <span class="font-semibold">DOB</span> : {{ $patient->dob }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex shrink-0 items-center gap-x-4">
+                                <div class="hidden sm:flex sm:flex-col sm:items-end">
+                                    <p class="mt-1 text-xs/5 ">Created: {{ $patient->created_at }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        <flux:modal
+                            :name="'edit-patient-'.$patient->id"
+                            class="min-w-xl"
+                        >
+                            <livewire:patient-form
+                                :patient="$patient"
+                            />
+                        </flux:modal>
+                    @endforeach
+                </ul>
+            @else
+                <p>There are no patients.</p>
+            @endif
+        </div>
+
+    </x-section>
 @endsection
