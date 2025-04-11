@@ -62,11 +62,7 @@ class User extends Authenticatable implements HasMedia
      */
     public function getAvatarAttribute() : array|string {
 
-        $avatar = $this->getFirstMediaUrl('avatars');
-        if ( env('APP_ENV') === 'local' ) {
-            $avatar = str_replace('localhost', $_SERVER[ 'HTTP_HOST' ], $avatar);
-        }
-        return $avatar;
+        return $this->getFirstMediaUrl('avatars');
     }
 
     public function appointments() : HasMany {
