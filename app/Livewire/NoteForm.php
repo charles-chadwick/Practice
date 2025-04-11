@@ -16,7 +16,6 @@ class NoteForm extends Component {
     public       $content;
     public       $type;
     public       $types;
-    public       $action = "create";
 
     public function mount( Note $note = null ) : void {
         $this->types = Note::$types;
