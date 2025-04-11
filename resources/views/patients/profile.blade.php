@@ -11,17 +11,9 @@
     <div class="flex gap-x-4">
         <x-section class="w-2/3">
             <div class="flex">
-                <!-- avatar -->
-                <div class="shrink-0">
-                    <img
-                        src="{{ $patient->avatar }}"
-                        alt="{{ $patient->full_name }}"
-                        class="rounded-md w-28 h-28 drop-shadow"
-                    >
-                </div>
 
                 <!-- personal information -->
-                <div class="grow px-4">
+                <div class="grow">
                     <x-section-header header="Patient Information">
                         <flux:dropdown align="end">
                             <flux:button size="xs">...</flux:button>
@@ -41,6 +33,13 @@
                         </flux:modal>
                     </x-section-header>
                     <div class="text-sm">
+                        <!-- avatar -->
+                            <img
+                                src="{{ $patient->avatar }}"
+                                alt="{{ $patient->full_name }}"
+                                class="rounded-md w-28 h-28 drop-shadow float-left mr-4"
+                            >
+
                         <p><span class="font-semibold">Name: </span>{{ $patient->full_name }}</p>
                         <p><span class="font-semibold">Date of Birth: </span>{{ $patient->dob }} ({{ $patient->age }})
                         </p>
