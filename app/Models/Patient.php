@@ -95,6 +95,10 @@ class Patient extends Authenticatable implements HasMedia {
         return $this->morphMany(Contact::class, 'contacts', 'on_type', 'on_id');
     }
 
+    public function discussions() : MorphMany {
+        return $this->morphMany(Discussion::class, 'contacts', 'on_type', 'on_id');
+    }
+
     public function notes() : MorphMany {
         return $this->morphMany(Note::class, 'notes', 'on_type', 'on_id');
     }
