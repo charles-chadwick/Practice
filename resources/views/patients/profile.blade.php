@@ -7,46 +7,51 @@
     <x-alert />
 
     <!-- patient information -->
-    <div class="flex gap-2 p-4 mb-4 bg-white rounded shadow text-stone-800">
 
-        <!-- avatar -->
-        <div class="shrink-0">
-            <img
-                src="{{ $patient->avatar }}"
-                alt="{{ $patient->full_name }}"
-                class="rounded-md w-28 h-28 drop-shadow"
-            >
-        </div>
+    <div class="flex gap-x-4">
+        <x-section class="w-2/3">
+            <div class="flex">
+                <!-- avatar -->
+                <div class="shrink-0">
+                    <img
+                        src="{{ $patient->avatar }}"
+                        alt="{{ $patient->full_name }}"
+                        class="rounded-md w-28 h-28 drop-shadow"
+                    >
+                </div>
 
-        <!-- personal information -->
-        <div class="grow px-4">
-            <x-section-header header="Patient Information">
-                <flux:dropdown align="end">
-                    <flux:button size="xs">...</flux:button>
-                    <flux:menu>
-                        <flux:menu.item icon="plus">
-                            <flux:modal.trigger name="patient-information">
-                                Edit Profile
-                            </flux:modal.trigger>
-                        </flux:menu.item>
-                    </flux:menu>
-                </flux:dropdown>
-                <flux:modal
-                    name="patient-information"
-                    class="w-full"
-                >
-                    <livewire:patient-form :patient="$patient" />
-                </flux:modal>
-            </x-section-header>
-            <div class="text-sm">
-                <p><span class="font-semibold">Name: </span>{{ $patient->full_name }}</p>
-                <p><span class="font-semibold">Date of Birth: </span>{{ $patient->dob }} ({{ $patient->age }})</p>
-                <p><span class="font-semibold">MRN: </span> #{{ $patient->id }}</p>
+                <!-- personal information -->
+                <div class="grow px-4">
+                    <x-section-header header="Patient Information">
+                        <flux:dropdown align="end">
+                            <flux:button size="xs">...</flux:button>
+                            <flux:menu>
+                                <flux:menu.item icon="plus">
+                                    <flux:modal.trigger name="patient-information">
+                                        Edit Profile
+                                    </flux:modal.trigger>
+                                </flux:menu.item>
+                            </flux:menu>
+                        </flux:dropdown>
+                        <flux:modal
+                            name="patient-information"
+                            class="w-full"
+                        >
+                            <livewire:patient-form :patient="$patient" />
+                        </flux:modal>
+                    </x-section-header>
+                    <div class="text-sm">
+                        <p><span class="font-semibold">Name: </span>{{ $patient->full_name }}</p>
+                        <p><span class="font-semibold">Date of Birth: </span>{{ $patient->dob }} ({{ $patient->age }})
+                        </p>
+                        <p><span class="font-semibold">MRN: </span> #{{ $patient->id }}</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </x-section>
 
-        <!-- contact information -->
-        <div class="grow">
+        <x-section class="w-1/3">
+            <!-- contact information -->
             <x-section-header header="Contact Information">
                 <flux:dropdown align="end">
                     <flux:button size="xs">...</flux:button>
@@ -71,7 +76,7 @@
                     :contacts="$patient->contacts"
                 />
             </div>
-        </div>
+        </x-section>
     </div>
 
     <x-section>
@@ -101,6 +106,7 @@
         ></livewire:appointment-list>
     </x-section>
 
+    <div class="flex gap-x-4">
     <x-section class="w-1/2">
         <x-section-header header="Notes">
             <flux:dropdown align="end">
@@ -129,4 +135,10 @@
             :obj_on="$patient"
         />
     </x-section>
+
+    <x-section class="w-1/2">
+        <x-section-header header="Messages">
+
+        </x-section-header>
+    </x-section></div>
 @endsection

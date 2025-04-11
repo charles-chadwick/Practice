@@ -19,7 +19,7 @@
                     class="text-stone-500 overflow-hidden bg-white"
                 >
                     @foreach($patients as $patient)
-                        <li class="relative flex justify-between gap-x-6 px-4 py-5 border border-stone-100 hover:border hover:border-lime-400 hover:bg-lime-100 sm:px-6">
+                        <li class="relative flex justify-between gap-x-6 px-4 py-5 border border-stone-100 sm:px-6 list-hover">
                             <div class="flex min-w-0 gap-x-4">
                                 <div class="shrink-0">
                                     <img
