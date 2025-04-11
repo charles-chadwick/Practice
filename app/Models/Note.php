@@ -1,15 +1,9 @@
 <?php
 
 namespace App\Models;
-
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Note extends Model {
-    use SoftDeletes;
+class Note extends Base {
 
     protected $fillable = [
         "on_type",
@@ -25,11 +19,6 @@ class Note extends Model {
         "Personal"  => "Personal",
         "Financial" => "Financial",
     ];
-
-    public function getCreatedAtAttribute( $value ) : string {
-        return Carbon::parse($value)
-                     ->format('m/d/y h:m A');
-    }
 
     public function user() : BelongsTo {
         return $this->belongsTo(User::class);

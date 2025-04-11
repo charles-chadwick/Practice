@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Contact extends Model
+class Contact extends Base
 {
-    use SoftDeletes;
-
     protected $fillable = [
         "on_type",
         "on_id",
