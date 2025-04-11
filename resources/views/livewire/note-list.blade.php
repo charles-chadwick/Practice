@@ -5,7 +5,7 @@
             class="divide-y divide-stone-100 overflow-hidden bg-white ring-1 ring-stone-900/5"
         >
             @foreach($notes as $note)
-                <li class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-stone-50 sm:px-6">
+                <li class="relative flex justify-between gap-x-6 px-4 py-5 list-hover sm:px-6">
                     <div class="flex min-w-0 gap-x-4">
 
                         <div class="min-w-0 flex-auto">
