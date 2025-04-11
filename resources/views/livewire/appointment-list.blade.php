@@ -45,6 +45,6 @@
             @endforeach
         </ul>
     @else
-        <p>There are no appointments.</p>
+        <p class="text-sm"">There are no appointments.</p>
     @endif
 </div>
