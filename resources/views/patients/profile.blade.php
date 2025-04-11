@@ -79,6 +79,7 @@
         </x-section>
     </div>
 
+    <!-- appointments -->
     <x-section>
         <x-section-header header="Appointments">
             <flux:dropdown align="end">
@@ -107,38 +108,65 @@
     </x-section>
 
     <div class="flex gap-x-4">
-    <x-section class="w-1/2">
-        <x-section-header header="Notes">
-            <flux:dropdown align="end">
-                <flux:button size="xs">...</flux:button>
-                <flux:menu>
-                    <flux:menu.item icon="plus">
-                        <flux:modal.trigger name="add-note">
-                            Create Note
-                        </flux:modal.trigger>
-                    </flux:menu.item>
 
-                </flux:menu>
-            </flux:dropdown>
+        <!-- notes -->
+        <x-section class="w-1/2">
+            <x-section-header header="Notes">
+                <flux:dropdown align="end">
+                    <flux:button size="xs">...</flux:button>
+                    <flux:menu>
+                        <flux:menu.item icon="plus">
+                            <flux:modal.trigger name="add-note">
+                                Create Note
+                            </flux:modal.trigger>
+                        </flux:menu.item>
 
-            <flux:modal
-                name="add-note"
-                class="w-full"
-            >
-                <livewire:note-form :obj="$patient"></livewire:note-form>
-            </flux:modal>
+                    </flux:menu>
+                </flux:dropdown>
 
-        </x-section-header>
+                <flux:modal
+                    name="add-note"
+                    class="w-full"
+                >
+                    <livewire:note-form :obj="$patient"></livewire:note-form>
+                </flux:modal>
 
-        <livewire:note-list
-            :notes="$patient->notes"
-            :obj_on="$patient"
-        />
-    </x-section>
+            </x-section-header>
 
-    <x-section class="w-1/2">
-        <x-section-header header="Messages">
+            <livewire:note-list
+                :notes="$patient->notes"
+                :obj_on="$patient"
+            />
+        </x-section>
 
-        </x-section-header>
-    </x-section></div>
+        <!-- messages -->
+        <x-section class="w-1/2">
+            <x-section-header header="Messages">
+                <flux:dropdown align="end">
+                    <flux:button size="xs">...</flux:button>
+                    <flux:menu>
+                        <flux:menu.item icon="plus">
+                            <flux:modal.trigger name="add-discussion">
+                                Create Note
+                            </flux:modal.trigger>
+                        </flux:menu.item>
+
+                    </flux:menu>
+                </flux:dropdown>
+
+                <flux:modal
+                    name="add-discussion"
+                    class="w-full"
+                >
+                    <livewire:discussion-form :obj="$patient"></livewire:discussion-form>
+                </flux:modal>
+
+            </x-section-header>
+
+            <livewire:discussion-list
+                :discussions="$patient->discussions"
+                :obj_on="$patient"
+            />
+        </x-section>
+    </div>
 @endsection

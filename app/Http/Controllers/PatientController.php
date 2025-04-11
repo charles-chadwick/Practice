@@ -26,7 +26,8 @@ class PatientController extends Controller {
             [
                 "appointments",
                 "contacts",
-                "notes"
+                "notes",
+                "discussions",
             ]
         );
 
