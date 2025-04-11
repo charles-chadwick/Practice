@@ -17,10 +17,10 @@ class AppointmentForm extends Component {
     public Patient      $patient;
 
     public $patient_id;
-    public $doctor_id = 1;
+    public $doctor_id;
     public $start_date;
     public $start_time;
-    public $duration;
+    public $duration = 10;
     public $notes;
     public $status;
     public $reason;
@@ -50,6 +50,8 @@ class AppointmentForm extends Component {
         if ( count($this->doctors) == 0 ) {
             $this->doctors = User::where('role', UserRole::Doctor->value)
                                  ->get();
+
+            $this->doctor_id = $this->doctors->first()->id;
         }
 
 
