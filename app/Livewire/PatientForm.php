@@ -6,8 +6,11 @@ use App\Models\Patient;
 use Illuminate\Notifications\Action;
 use Illuminate\Routing\Redirector;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PatientForm extends Component {
+
+    use WithPagination;
 
     public ?Patient $patient;
     public          $first;

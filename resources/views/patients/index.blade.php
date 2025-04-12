@@ -57,6 +57,6 @@
                 <p>There are no patients.</p>
             @endif
         </div>
-
+        {{ $patients->links() }}
     </x-section>
 @endsection

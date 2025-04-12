@@ -16,7 +16,7 @@ class PatientController extends Controller {
                 'dob'   => 'Date of Birth'
             ],
             "patients" => Patient::orderBy(request("sort_by", "id"), request("sort_direction", "asc"))
-                                 ->get()
+                                 ->paginate(10)
         ]);
     }
 
